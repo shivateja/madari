@@ -1,0 +1,98 @@
+# This file is an example configuration file for madari
+# This file uses YAML. Refer http://en.wikipedia.org/wiki/YAML for YAML documentation and
+# http://pyyaml.org/wiki/PyYAMLDocumentation for PyYAML documentation
+eth0:                                                       # Interface
+    total-bandwidth: 100mbps                                # Total Bandwidth Available
+    slots:
+        10:00-19:00:                                        # Time slot for which following rules should be applied.
+                                                            # Syntax is \b\d{1:2}:\d{1:2}-\d{1:2}\d{1:2}\b. Hours will be considered. Minutes will be discarded.
+            block:                                          # All the "ip-addresses" in this block will be blocked using iptables.
+                ip-addresses: [10.7.2.24,10.7.2.2]          # An array of ip addresses to be blocked.
+            default-download-limit: 100kbps                 # This is the default download limit for ip addresses specified in acl.
+                                                            # Allowed units/values are
+                                                            # kbps   Kilobytes per second
+                                                            # mbps   Megabytes per second
+                                                            # kbit   Kilobits per second
+                                                            # mbit   Megabits per second
+                                                            # bps or a bare number Bytes per second
+                                                            # no which implies False in YAML
+                                                            # Only download or upload speed should be given a value.
+                                                            # This is because, we can control only outgoing traffic from
+                                                            # an interface.
+                                                            # If both are specified, only download limit will be
+                                                            # considered
+                                                            #
+                                                            #
+                                                            # PACKETS WILL BE CLASSIFIED BASED ON SOURCE IP IF
+                                                            # "download-limit" IS SPECIFIED AND VICE VERSA.
+                                                            #
+                                                            #
+            default-upload-limit: no                        # Units/values are as specified 
+            acl:                                            # Access control rules for ip addresses specified below
+                10.7.2.22:                                  # The ip address for which bandwidth needs to be controlled.
+                                                            # Subnet masking can also be used.
+                                                            # Allowed options are
+                                                            # "download-limit","upload-limit","strict". Each of them are
+                                                            # explained below.Could not create shell script in given directory. Requires root access
+                                                            # Any extra options will be discarded.
+                    strict: yes                             # If "strict" is given as "yes", the ip address will not be
+                                                            # allocated more than specified. If "strict" is given as "no"
+                                                            # or not specified the ip address will get guarateed rate of
+                                                            # given download or upload limit and might recieve a maximum
+                                                            # bandwidth upto "total-bandwidth" of the interface.
+                    download-limit: 10kbps                  # If "download-limit" is specified for an ip address this
+                                                            # limit will be used instead of default limits set. The same
+                                                            # applies for upload limit.
+                                                            # IP address can also be specified without any options will
+                                                            # get the default values i.e "default-download-limit" for
+                                                            # "download-limit", "default-upload-limit" for
+                                                            # "upload-limit" and strict will get "no" by default
+                10.7.2.24:
+                    download-limit: 1mbps
+                10.6.5.343:
+                    strict: yes
+        21:00-24:00:
+            block:
+                ip-addresses: [10.7.2.24,10.7.2.2]
+            default-download-limit: 100kbps
+            default-upload-limit: no
+            acl:
+                10.7.2.22:
+                    strict: yes
+                    download-limit: no
+                    upload-limit: 10kbps
+                10.7.2.24:
+                    download-limit: 1Mbps
+                10.6.5.343:
+eth1:
+    total-bandwidth: 100mbps
+    slots:
+        1:00-2:00:
+            block:
+                ip-addresses: [10.7.2.24,10.7.2.2]
+
+            default-download-limit: 100kbps
+            default-upload-limit: no
+            acl:
+                10.7.2.22:
+                    strict: yes
+                    download-limit: no
+                    upload-limit: 10kbps
+                10.7.2.24:
+                    download-limit: 1mbps
+                10.6.5.343:
+        10:00-12:00:
+            block:
+                ip-addresses: [10.7.2.24,10.7.2.2]
+
+            default-download-limit: 100kbps
+            default-upload-limit: no
+            acl:
+                10.7.2.22:
+                    strict: yes
+                    download-limit: no
+                    upload-limit: 10kbps
+                10.7.2.24:
+                    download-limit: 1Mbps
+                10.6.5.343:
+

@@ -1,0 +1,42 @@
+#!/usr/bin/python
+import os
+import sys
+from subprocess import call
+from slot import slot
+from dev import dev
+try:
+    from yaml import load
+except:
+    print "Yaml library not found. Install PyYaml"
+    sys.exit(1)
+
+file_directory = "/etc/madari"
+confFilePath = "config.yaml"
+def die():
+    sys.exit(1)
+
+# Check if madari shell scripts directory exists. If not create the directory.
+if not os.path.isdir(file_directory):
+    if call(["sudo mkdir %s" %file_directory],shell=True):
+        print "Could not create %s. Exiting"%file_directory
+        die()
+
+def main():
+    try:
+        conf_file = open(confFilePath,"r")
+    except:
+        print "Could not open configuration file. Exiting..."
+        die()
+    try:
+        conf = load(conf_file)
+    except:
+        print "Error parsing the cofiguration file. Exiting..."
+        die()
+    devices = []
+    for device,properties in conf.items():
+        k = dev(device,properties)
+        devices.append(k)
+
+
+if __name__=="__main__":
+    main()
