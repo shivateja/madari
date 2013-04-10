@@ -10,11 +10,11 @@ Version :
 
 Dependencies :
 -------------
-It requires Linux kernel 2.4+ compiled with iproute2, Python 2.7 and yaml, python_crontab python libraries.
+It requires Linux kernel 2.4+ compiled with iproute2, Python 2.7. And it requires yaml, python_crontab python libraries.
 
 How to use it? / Installation :
 -------------------------------
-Madari doesn't require installation. Just run manager.py as root. It reads the default configuration file(config.yaml) and generates shell scripts in the directory specified(in "manager.py"). 
+Madari doesn't require installation. Run the script "manager.py". You might need root access. It reads the default configuration file(config.yaml) and generates shell scripts in the directory specified(in "manager.py"). 
 To revert back to previous configuration of "tc", send an argument "stop" to manager.py.
 Check the example configuration file for the format that needs to be followed in the configurations file.
 Note that you can control only out bound traffic through an interface.
