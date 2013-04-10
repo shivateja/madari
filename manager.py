@@ -85,7 +85,7 @@ def main():
     for device in devices:
         print "Configuring %s" % device.name
         call(["sudo bash %s/%s.sh" % (file_directory, device.name)],
-                shell=True)
+             shell=True)
         print
     print "Done ! Exiting."
 
