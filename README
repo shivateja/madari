@@ -2,7 +2,7 @@
 What is it ?
 ------------
 Madari is a traffic shaping software that uses iproute2 utilities , "tc" and "iptables" to shape the traffic and control
-the bandwidth allocation to websites based on ip addresses. It is written in python 2.7.
+the bandwidth allocation to differrent ip addresses. It is written in python 2.7.
 
 Version :
 --------
