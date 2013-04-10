@@ -1,5 +1,5 @@
 """
-Library for generating shell script.
+Script that generates bash scripts.
 """
 import sys
 from dev import dev
