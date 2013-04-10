@@ -10,7 +10,8 @@ Version :
 
 Dependencies :
 -------------
-It requires Linux kernel 2.4+ compiled with iproute2, Python 2.7. And it requires yaml, python_crontab python libraries.
+It requires Linux kernel 2.4+ compiled with iproute2, Python 2.7. It also requires yaml, crontab(python_crontab) libraries for
+python.
 
 How to use it? / Installation :
 -------------------------------
