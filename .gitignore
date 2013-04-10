@@ -1,5 +1,7 @@
 #Compiled files
 *.pyc
+*~
+*.swp
 #Extra Repos
 PyYAML/
 python-crontab-1.2/
