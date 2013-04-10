@@ -31,7 +31,6 @@ file_directory = "/etc/madari"
 confFilePath = "config.yaml"
 cronCommand = "bash %s/hourly.sh" %file_directory
 
-# Self Explanatory
 def die():
     sys.exit(1)
     
